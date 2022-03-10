@@ -11,14 +11,14 @@ const getPokemonDB = async () => {
         }})
         return pokes.map(p => ({
             id: p.id,
-            name: p.name,
+            name: p.name.toLowerCase(),
             types: p.types.map(e => e.name),
             image: p.image,
             attack: p.attack,
             createdIdDB: p.createdIdDB
         }))
-    }
-    catch (error) {
+
+    } catch (error) {
         console.log(`Pokemon not found from DataBase: ${error}`)
     }
 }
@@ -27,33 +27,65 @@ const getPokemonDB = async () => {
 const getPokemonAPI = async() => {
     try {
        const pokeArray = []
-       for (let i = 1; i <= 40; i++) {
+       const numPokemon = 40
+       for (let i = 1; i <= numPokemon; i++) {
           pokeArray.push(await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
        }
-       const pokemonsData =  await Promise.all(pokeArray)
+       const pokemonsData = await Promise.all(pokeArray)
            const pokemon = pokemonsData.map(p => {
                return ({
                    id: p.data.id,
-                   name: p.data.name,
+                   name: p.data.name.toLowerCase(),
                    types: p.data.types.map(e => e.type.name),
-                   image: p.data.sprites.other.dream_world.front_default,
-                   attack: p.data.stats[1].base_stat,
+                   image: p.data.sprites.other.home.front_default,
+                   attack: p.data.stats[1].base_stat
                })
            }) 
            return pokemon
+
     } catch (error) {
-        console.log(`Pokemon not found from pokeAPI: ${error}`)
+        console.log('Pokemon not found from pokeAPI: ' + error)
     }
 }
 
-// Obtengo los pokemons de la pokeAPI y de la DataBase
-const getTotalPokemon = async () => {
+// Obtengo un pokemon en particular buscandolo por name en la DB y en la API
+const getNameFromDB = async (name) => {
     try {
-        const [pokeAPI, pokeDB] = await Promise.all([getPokemonAPI(), getPokemonDB()])
-        const allPokes = [...pokeDB, ...pokeAPI]
-        return allPokes
+        const pokeNameDB = await Pokemon.findAll({
+            where: {name},
+            include: {
+                model: Type, 
+                through:{attributes: []}
+        }})
+        return pokeNameDB.map(p => ({
+            id: p.id,
+            name: p.name.toLowerCase(),
+            types: p.types.map(e => e.name),
+            image: p.image,
+            attack: p.attack,
+            createdIdDB: p.createdIdDB
+        }))
+        
     } catch (error) {
-        console.log(`Pokemon not found from pokeAPI and DataBase: ${error}`)
+        console.log(`Pokemon not found from DataBase by Name: ${error}`)
+    }
+}
+
+const getNameFromAPI = async (name) => {
+    try {
+        const pokeName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        const pokeNameAPI = [{
+            id: pokeName.data.id,
+            name: pokeName.data.name.toLowerCase(),
+            types: pokeName.data.types.map(t => t.type.name),
+            image: pokeName.data.sprites.other.home.front_default,
+            attack: pokeName.data.stats[1].base_stat
+        }]
+        console.log(pokeNameAPI)
+        return pokeNameAPI
+
+    } catch (error) {
+        console.log(`Pokemon not found from API by Name: ${error}`)
     }
 }
 
@@ -68,7 +100,7 @@ const createPokemon = async (name, hp, attack, defense, speed, height, weight, i
             speed: speed,
             height: height,
             weight: weight,
-            image: image,
+            image: image
         })
         const typeDB = await Type.findAll({
             where: {name: types}
@@ -81,7 +113,7 @@ const createPokemon = async (name, hp, attack, defense, speed, height, weight, i
     }
 }
 
-// Obtengo el detalle de un pokemon en particular buscandolo por Id en la API y en la DB
+// Obtengo el detalle de un pokemon en particular buscandolo por Id en la DB y en la API
 const getIdFromDB = async (id) => {
     try {
         const pokeId = await Pokemon.findByPk(id, {
@@ -105,14 +137,14 @@ const getIdFromDB = async (id) => {
         return pokeFoundDB
 
     } catch (error) {
-        console.log(`Pokemon not found by DataBase Id: ${error}`)
+        console.log(`Pokemon not found from DataBase by Id: ${error}`)
     }
 }
 
 const getIdFromAPI = async (id) => {
     try {
         const pokeId = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        const pokeFoundAPI = {
+        const pokefoundAPI = {
             id: pokeId.data.id,
             name: pokeId.data.name,
             hp: pokeId.data.stats[0].base_stat,
@@ -121,21 +153,22 @@ const getIdFromAPI = async (id) => {
             speed: pokeId.data.stats[5].base_stat, 
             height: pokeId.data.height, 
             weight: pokeId.data.weight,
-            image: pokeId.data.sprites.other.dream_world.front_default,
-            types: pokeId.data.types.map(t => t.type.name),
+            image: pokeId.data.sprites.other.home.front_default,
+            types: pokeId.data.types.map(t => t.type.name)
         }
-        return pokeFoundAPI
+        return pokefoundAPI
 
     } catch (error) {
-        console.log(`Pokemon not found by API Id: ${error}`)
+        console.log(`Pokemon not found from API by Id: ${error}`)
     }
 }
 
 module.exports = {
     getPokemonAPI,
     getPokemonDB, 
-    getTotalPokemon,
+    getNameFromAPI,
+    getNameFromDB,
     createPokemon,
     getIdFromAPI,
-    getIdFromDB
+    getIdFromDB,
 }

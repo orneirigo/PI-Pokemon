@@ -23,5 +23,5 @@ async function getPekemonTypes () {
 }
 
 module.exports = { 
-    getPekemonTypes,
+    getPekemonTypes
 }

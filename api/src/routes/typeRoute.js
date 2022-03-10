@@ -8,7 +8,7 @@ router.get('/', async (req,res) => {
         const pokemonTypes = await getPekemonTypes()
         res.json(pokemonTypes)
 
-    } catch(error) {
+    } catch (error) {
         res.status(400).send(`Type Pokemon Error: ${error}`)
     }
 })

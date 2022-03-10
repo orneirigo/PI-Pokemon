@@ -1,27 +1,30 @@
 const { Router } = require('express');
-const { getTotalPokemon, createPokemon, getIdFromAPI, getIdFromDB } = require('../controllers/utilPokemon')
-const { Pokemon, Type } = require('../db.js')
+const { getPokemonAPI, getPokemonDB, getNameFromAPI, getNameFromDB, 
+        createPokemon, getIdFromAPI, getIdFromDB } = require('../controllers/utilPokemon')
 const router = Router();
 
-// GET a /pokemons y /pokemons?name="..."
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
     const { name } = req.query
     try {
-        const pokemonData = await getTotalPokemon()
-        if(name) {
-            const pokemonName = pokemonData.filter(p => p.name.toLowerCase() === name.toLocaleLowerCase())
-            pokemonName.length 
-            ? res.status(200).json(pokemonName) 
-            : res.status(404).send(`Pokemon not found: ${name}`)
-        } else {
-            res.status(200).json(pokemonData)
-        }
-    } catch(error) {
-        res.status(400).send(`Get Pokemon Error: ${error}`)
+      if (name) {
+            const namePokemon = name.toLowerCase()
+            const nameAPI = await getNameFromAPI(namePokemon)
+            if (!nameAPI) {
+                    const nameDB = await getNameFromDB(namePokemon)
+                    nameDB? res.status(200).json(nameDB) : res.status(404)
+                } else res.status(200).json(nameAPI)
+      } else {
+            const pokesAPI = await getPokemonAPI()
+            const pokesDB = await getPokemonDB()
+            const pokemons = [...pokesAPI, ...pokesDB]
+            res.status(200).json(pokemons)
+        } 
+      
+    } catch (error) {
+        res.status(400).send(`Get Pokemon by Name not found: ${error}`)
     }
 })
 
-// POST /pokemons
 router.post('/', async (req, res, next) => {
     const { name, hp, attack, defense, speed, height, weight, image, types } = req.body
     try { 
@@ -34,23 +37,20 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-// GET /pokemons/{idPokemon}
 router.get('/:idPokemon', async (req, res) => {
     const { idPokemon } = req.params
-    if ((!idPokemon.includes('-'))) {
-        try {
+    try {
+        if((!idPokemon.includes('-'))){
             const idAPI = await getIdFromAPI(idPokemon)
             res.status(200).json(idAPI)
-        } catch(error) {
-            res.status(404).send(`Detail Pokemon by IdAPI not found: ${error}`)
-        }}
-    else {
-        try {
+        } else { 
             const idDB = await getIdFromDB(idPokemon)
             res.status(200).json(idDB)
-        } catch(error) {
-            res.status(404).send(`Detail Pokemon by IdDB not found: ${error}`)
-    }}
+        }
+
+    } catch (error) {
+        res.status(404).send(`Detail Pokemon by Id not found: ${error}`)
+    }
 })
 
 module.exports = router;
