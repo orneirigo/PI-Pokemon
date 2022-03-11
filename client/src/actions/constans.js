@@ -1,1 +1,9 @@
 export const GET_POKEMONS = 'GET_POKEMONS';
+export const GET_POKEMONS_NAME =  'GET_POKEMONS_NAME';
+export const GET_POKEMONS_ID = 'GET_POKEMONS_ID';
+export const GET_TYPES = 'GET_TYPES';
+export const CREATED_POKEMON = 'CREATE_POKEMON';
+export const FILTER_BY_TYPES = 'FILTER_BY_TYPES';
+export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const ORDER_BY_STRENGTH = 'ORDER_BY_STRENGTH';
