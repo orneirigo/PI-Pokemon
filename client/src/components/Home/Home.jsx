@@ -65,11 +65,6 @@ function Home () {
         <div>
             <h1>Pokemons</h1>
             <div>
-                <Link to='/home'>
-                    <button>Back Home</button>
-                </Link>
-            </div>
-            <div>
                 <Link to='/createdPokemon'>
                 <button>Go to create your own Pokemon!</button>
                 </Link>

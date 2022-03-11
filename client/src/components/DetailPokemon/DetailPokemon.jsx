@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link , useParams } from "react-router-dom";
 
-import { getPokemonsId } from "../../actions";
+import { getPokemonsId } from '../../actions';
 
 function DetailPokemon () {
     const dispatch = useDispatch()
@@ -14,12 +14,12 @@ function DetailPokemon () {
     }, [dispatch, params.id])
 
     const pokeDetail = useSelector(state => state.pokemonDetail)
-    console.log(pokeDetail)
 
     return (
         <div>
-            {
-                // pokeDetail.length > 0 ?
+             <Link to='/home'>
+                <button>Go Back</button>
+            </Link>
                 <div>
                     <h1>{pokeDetail.name}</h1>
                     <h4>Id: {pokeDetail.id}</h4>
@@ -38,12 +38,6 @@ function DetailPokemon () {
                         </label>
                     </div>
                 </div>
-                // : 'Pokemon Not Found'
-            }
-            <Link to='/home'>
-                <button>Go Back</button>
-            </Link>
-            
         </div>
     )
 }
