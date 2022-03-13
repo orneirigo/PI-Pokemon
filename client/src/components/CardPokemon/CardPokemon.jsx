@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './CardPokemon.module.css'
 
 function CardPokemon ({id, name, image, types, attack}) {
     const pokeName = name[0].toUpperCase() + name.slice(1)
     const pokeTypes = types?.map(t => <h4 key={t}> {t[0].toUpperCase() + t.slice(1)}</h4>)
     return (
         <Link to={`/home/${id}`}>
-            <div>
+            <div className={styles.grid}>
                 <h2>{pokeName}</h2>
                 <h3>Attack: {attack}</h3>
-                <img src={image} alt='Img not found!'/>
+                <img src={image} alt='Img not found!' width='250px'/>
                 <div>{pokeTypes}</div>
             </div>
         </Link>

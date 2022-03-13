@@ -1,0 +1,26 @@
+.landingPage {
+        text-align: center;
+        background-image: url('../../images/WallPaper.png');
+        background-size: cover;
+        min-height: 100vh;
+        width: 1535px;
+        background-repeat: repeat-x;
+  }
+
+  .imgLogo {
+        text-align: left;
+        margin-left: 70px;
+        margin-bottom: -60px;
+        filter: drop-shadow(7px 8px 5px rgba(12, 4, 4, 0.7));
+  }
+
+  .pokebola {
+        float: left;
+        margin-top: 100px;
+        margin-left: 380px;
+        text-decoration: none;
+        font-size: 2rem;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        filter: drop-shadow(7px 8px 5px rgba(0, 0, 0, 0.7));
+  }
+

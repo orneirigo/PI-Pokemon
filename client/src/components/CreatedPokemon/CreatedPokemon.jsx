@@ -7,53 +7,53 @@ import { getPokemons, getTypes, createdPokemon } from "../../actions";
 
 function validation (input) {
     let msgError = {}
-    let expName = /^[a-zA-ZñÑ]+$/;
-    let expNumber =/^[0-9]*[1-9][0-9]*$/;
+    let expString = /^[a-zA-Z]+$/;
+    let expNumber =/^[1-9][0-9]*$/;
     let expUrlImage = /\.(jpg|png|gif)$/; 
     
-    if (!input.name) {
+    if (input.name === '') {
         msgError.name = 'Name is required'
-    } else if (!expName.test(input.name)) {
+    } else if (!expString.test(input.name)) {
         msgError.name = 'Name can only contain lettes'
     } else if (input.name.length < 4 || input.name.length > 10) {
-        msgError.name = 'Name must have between 4-10 lettes'
-    };
-    if (!input.hp || input.hp === 0) {
-        msgError.hp = 'HP is required'
+        msgError.name = 'Name must have between 4-10 letters'
+    }
+    else if (input.hp === '' ) {
+        msgError.hp = 'HP is required and must be a number'
     } else if (!expNumber.test(input.hp) || parseInt(input.hp) > 150) {
         msgError.hp = 'HP must be a positive number and <150'
-    };
-    if (!input.attack || input.attack === 0) {
-        msgError.attack = 'Attack is required'
+    }
+    else if (input.attack === '') {
+        msgError.attack = 'Attack is required and must be a number'
     } else if (!expNumber.test(input.attack) || parseInt(input.attack) > 200) {
         msgError.attack = 'Attack must be a positive number and <200'
-    };
-    if (!input.defense || input.defense === 0) {
-        msgError.defense = 'Defense is required'
+    }
+    else if (input.defense === '') {
+        msgError.defense = 'Defense is required and must be a number'
     } else if (!expNumber.test(input.defense) || parseInt(input.defense) > 200) {
         msgError.defense = 'Defense must be a positive number and <200'
-    };
-    if (!input.speed || input.speed === 0) {
-        msgError.speed = 'Speed is required'
+    }
+    else if (input.speed === '') {
+        msgError.speed = 'Speed is required and must be a number'
     } else if (!expNumber.test(input.speed) || parseInt(input.speed) > 300) {
         msgError.speed = 'Speed must be a positive number and <300'
-    };
-    if (!input.height || input.height === 0) {
-        msgError.height = 'Height is required'
+    }
+    else if (!input.height === '') {
+        msgError.height = 'Height is required and must be a number'
     } else if (!expNumber.test(input.height) || parseInt(input.height) > 350) {
         msgError.height = 'Height must be a positive number and <350'
-    };
-    if (!input.weight || input.weight === 0) {
-        msgError.weight = 'Weight is required'
+    }
+    else if (!input.weight === '') {
+        msgError.weight = 'Weight is required and must be a number'
     } else if (!expNumber.test(input.weight) || parseInt(input.weight) > 400) {
         msgError.weight = 'Weight must be a positive number and <400'
-    };
-    if (!input.image) {
+    }
+    else if (!input.image === '') {
         msgError.image = 'Image is required'
     } else if (!expUrlImage.test(input.image)) {
         msgError.image = 'Image must have a valid URL'
-    };
-    if (input.types.length === 0) {
+    }
+    else if (input.types.length === 0) {
         msgError.types = 'Types are required'
     } else if (input.types.length > 2)  {
         msgError.types = 'A pokemon can only have 1 or 2 types'
@@ -184,12 +184,12 @@ function CreatedPokemon () {
                         <label>Select a type: </label>
                         <select name='types' disabled={input.types.length >=2} onChange={handleOptionInput}>
                             {pokesTypes.map((t,i) => (
-                                <option value={t.name} key={i*10}>{t.name[0].toUpperCase() + t.name.slice(1)}</option>))}
+                                <option value={t.name} key={i}>{t.name[0].toUpperCase() + t.name.slice(1)}</option>))}
                         </select>
                     </div>
                     <div>
                         {input.types?.map((t,i) => (
-                            <div key={(i)}>
+                            <div key={(i*10)}>
                                 <span> {t} </span>
                                 <button onClick={() => handleDelete(t)}>X</button>
                             </div>

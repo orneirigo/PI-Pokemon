@@ -1,0 +1,11 @@
+.grid {
+    text-align: center;
+    display: grid;
+    row-gap: 50px;
+    background-repeat:  no-repeat;
+    background-position: top;
+    background-size: cover;
+    grid-template-columns: auto auto auto;
+    margin-left: 80px;
+    padding: 10px;
+}

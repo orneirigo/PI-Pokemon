@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link , useParams } from "react-router-dom";
+import styles from './DetailPokemon.module.css';
+
 
 import { getPokemonsId } from '../../actions';
 
@@ -16,28 +18,45 @@ function DetailPokemon () {
     const pokeDetail = useSelector(state => state.pokemonDetail)
 
     return (
-        <div>
-             <Link to='/home'>
-                <button>Go Back</button>
-            </Link>
-                <div>
-                    <h1>{pokeDetail.name}</h1>
-                    <h4>Id: {pokeDetail.id}</h4>
-                    <img src={pokeDetail.image} alt='img not found'/>
-                    <h4>HP: {pokeDetail.hp}</h4>
-                    <h4>Attack: {pokeDetail.attack}</h4>
-                    <h4>Defense: {pokeDetail.defense}</h4>
-                    <h4>{pokeDetail.speed}</h4>
-                    <h4>{pokeDetail.height}</h4>
-                    <h4>{pokeDetail.weight}</h4>
-                    <div>  
-                        <label>
-                        Types: {pokeDetail.types?.map((t,i) => (
-                            <h4 key={i}>{t[0].toUpperCase() + t.slice(1)}</h4>
-                        ))}
-                        </label>
+        <div className={styles.detailBackground}>
+            <div>
+                <Link to='/home'>
+                    <button className={styles.button}>Go back!</button>
+                </Link>
+                    <div className={styles.detailPokemon}>
+                        <div className={styles.namePokemon}>
+                            <h1>{pokeDetail.name}</h1> 
+                        </div>
+                        <div className={styles.idPokemon}>
+                            <p>ID: {pokeDetail.id}</p>
+                        </div>
+                        <div className={styles.imagePokemon}>
+                            <img src={pokeDetail.image} alt='img not found' width='280px'/>
+                        </div>
+                        <div className={styles.detailStats}>  
+                            <h3>
+                                {pokeDetail.types?.map((t,i) => (
+                                <span key={i}>{t[0].toUpperCase() + t.slice(1) + '/'}</span>
+                            ))}
+                            </h3>
+                        </div>
+                        <hr/>
+                        <div className={styles.detailStats}>
+                            <h3>HP:{pokeDetail.hp}</h3>
+                            <h3>Speed: {pokeDetail.speed}</h3>
+                        </div>
+                        <hr/>
+                        <div className={styles.detailStats}>
+                            <h3>Attack: {pokeDetail.attack}</h3>
+                            <h3>Defense: {pokeDetail.defense}</h3>
+                        </div>
+                        <hr/>
+                        <div className={styles.detailStats}>
+                            <h3>Height: {pokeDetail.height}</h3>
+                            <h3>Weight: {pokeDetail.weight}</h3>
+                        </div>
                     </div>
-                </div>
+            </div>
         </div>
     )
 }

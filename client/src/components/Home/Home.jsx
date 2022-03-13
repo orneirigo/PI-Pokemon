@@ -29,27 +29,27 @@ function Home () {
 
     const handleFilterByOrigin = (e) => {
         e.preventDefault()
-        setCurrentPage(1)
         dispatch(filterByOrigin(e.target.value))
+        setCurrentPage(1)
     }
 
     const handleFilterByTypes = (e) => {
         e.preventDefault()
-        setCurrentPage(1)
         dispatch(filterByTypes(e.target.value))
+        setCurrentPage(1)
     }
 
     const handleOrderByName = (e) => {
         e.preventDefault(e)
-        setCurrentPage(1)
         dispatch(orderByName(e.target.value))
+        setCurrentPage(1)
         // setOrder(e.target.value)
     }
 
     const handleOrderByStrength = (e) => {
         e.preventDefault()
-        setCurrentPage(1)
         dispatch(orderByStrength(e.target.value))
+        setCurrentPage(1)
         // setOrder(e.target.value)
     }
     const pokemonsPerPage = 12
