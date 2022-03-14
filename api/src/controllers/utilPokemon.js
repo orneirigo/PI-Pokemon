@@ -13,6 +13,7 @@ const getPokemonDB = async () => {
             name: p.name.toLowerCase(),
             types: p.types.map(e => e.name),
             image: p.image,
+            attack: p.attack,
             createdIdDB: p.createdIdDB
         }))
 
@@ -35,6 +36,7 @@ const getPokemonAPI = async() => {
                    id: p.data.id,
                    name: p.data.name.toLowerCase(),
                    types: p.data.types.map(e => e.type.name),
+                   attack: p.data.stats[1].base_stat,
                    image: p.data.sprites.other.home.front_default,
                })
            }) 
@@ -58,6 +60,7 @@ const getNameFromDB = async (name) => {
             name: p.name.toLowerCase(),
             types: p.types.map(e => e.name),
             image: p.image,
+            attack: p.attack,
             createdIdDB: p.createdIdDB
         }))
         
@@ -73,9 +76,10 @@ const getNameFromAPI = async (name) => {
             id: pokeName.data.id,
             name: pokeName.data.name.toLowerCase(),
             types: pokeName.data.types.map(t => t.type.name),
+            attack: pokeName.data.stats[1].base_stat,
             image: pokeName.data.sprites.other.home.front_default,
         }]
-        console.log(pokeNameAPI)
+        // console.log(pokeNameAPI)
         return pokeNameAPI
 
     } catch (error) {
