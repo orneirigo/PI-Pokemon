@@ -2,7 +2,6 @@ const { Router } = require('express');
 const { getPekemonTypes } = require('../controllers/utilType')
 const router = Router();
 
-// GET a /types
 router.get('/', async (req,res) => {
     try {
         const pokemonTypes = await getPekemonTypes()

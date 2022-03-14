@@ -25,15 +25,14 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', async (req, res) => {
     const { name, hp, attack, defense, speed, height, weight, image, types } = req.body
     try { 
         await createPokemon(name, hp, attack, defense, speed, height, weight, image, types )
         res.status(200).send('Pokemon created successfully')
 
     } catch (error) {
-        next(error)
-        // res.status(404).send(`Could not create the pokemon: ${error}`)
+        res.status(404).send(`Could not Create the pokemon: ${error}`)
     }
 })
 
