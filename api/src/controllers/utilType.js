@@ -1,7 +1,6 @@
 const axios = require('axios')
 const { Type } = require('../db.js')
 
-// Obtengo los tipos de pokemons de la pokeAPI y los almaceno en la DataBase
 async function getPekemonTypes () {
     try {
         const pokeTypesAPI = await axios.get('https://pokeapi.co/api/v2/type')

@@ -1,7 +1,6 @@
 const axios = require('axios')
 const { Pokemon, Type } = require('../db.js')
 
-// Obtengo los pokemons de la DataBase
 const getPokemonDB = async () => {
     try {
         const pokes = await Pokemon.findAll({
@@ -14,7 +13,6 @@ const getPokemonDB = async () => {
             name: p.name.toLowerCase(),
             types: p.types.map(e => e.name),
             image: p.image,
-            attack: p.attack,
             createdIdDB: p.createdIdDB
         }))
 
@@ -23,13 +21,13 @@ const getPokemonDB = async () => {
     }
 }
 
-// Obtengo los pokemons de la pokeAPI
 const getPokemonAPI = async() => {
     try {
+       const pokemonsURL = (id) => (`https://pokeapi.co/api/v2/pokemon/${id}`)
        const pokeArray = []
        const numPokemon = 40
        for (let i = 1; i <= numPokemon; i++) {
-          pokeArray.push(await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
+          pokeArray.push(await axios.get(pokemonsURL(i)))
        }
        const pokemonsData = await Promise.all(pokeArray)
            const pokemon = pokemonsData.map(p => {
@@ -38,7 +36,6 @@ const getPokemonAPI = async() => {
                    name: p.data.name.toLowerCase(),
                    types: p.data.types.map(e => e.type.name),
                    image: p.data.sprites.other.home.front_default,
-                   attack: p.data.stats[1].base_stat
                })
            }) 
            return pokemon
@@ -48,7 +45,6 @@ const getPokemonAPI = async() => {
     }
 }
 
-// Obtengo un pokemon en particular buscandolo por name en la DB y en la API
 const getNameFromDB = async (name) => {
     try {
         const pokeNameDB = await Pokemon.findAll({
@@ -62,7 +58,6 @@ const getNameFromDB = async (name) => {
             name: p.name.toLowerCase(),
             types: p.types.map(e => e.name),
             image: p.image,
-            attack: p.attack,
             createdIdDB: p.createdIdDB
         }))
         
@@ -79,7 +74,6 @@ const getNameFromAPI = async (name) => {
             name: pokeName.data.name.toLowerCase(),
             types: pokeName.data.types.map(t => t.type.name),
             image: pokeName.data.sprites.other.home.front_default,
-            attack: pokeName.data.stats[1].base_stat
         }]
         console.log(pokeNameAPI)
         return pokeNameAPI
@@ -89,7 +83,6 @@ const getNameFromAPI = async (name) => {
     }
 }
 
-// Creo un nuevo pokemon y lo guardo en mi DataBase
 const createPokemon = async (name, hp, attack, defense, speed, height, weight, image, types) => {
     try {
         const pokeCreated = await Pokemon.create({
@@ -113,7 +106,6 @@ const createPokemon = async (name, hp, attack, defense, speed, height, weight, i
     }
 }
 
-// Obtengo el detalle de un pokemon en particular buscandolo por Id en la DB y en la API
 const getIdFromDB = async (id) => {
     try {
         const pokeId = await Pokemon.findByPk(id, {
