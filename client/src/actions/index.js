@@ -3,54 +3,96 @@ import { GET_POKEMONS, GET_POKEMONS_NAME, GET_POKEMONS_ID, GET_TYPES, CREATED_PO
         FILTER_BY_TYPES, FILTER_BY_ORIGIN, ORDER_BY_NAME, ORDER_BY_STRENGTH,} from './constans';
 
 export function getPokemons () {
-    return (dispatch) => {
-        return fetch ('http://localhost:3001/pokemons/')
-        .then(response => response.json())
-        .then(allPokemons => {
-            dispatch({
+    return async (dispatch) => {
+        try {
+            const allPokemons = await axios.get('/pokemons/')
+            return dispatch({
                 type: GET_POKEMONS,
-                payload: allPokemons
-            })
-        })
-        .catch(error => console.log(error))
+                payload: allPokemons.data
+        })}
+        catch(error) {
+            console.log(error)
+        }
     }
 }
+
+// export function getPokemons () {
+//     return (dispatch) => {
+//         return fetch ('http://localhost:3001/pokemons/')
+//         .then(response => response.json())
+//         .then(allPokemons => {
+//             dispatch({
+//                 type: GET_POKEMONS,
+//                 payload: allPokemons
+//             })
+//         })
+//         .catch(error => console.log(error))
+//     }
+// }
 
 export function getPokemonsName (name) {
-    return (dispatch) => {
-        return fetch (`http://localhost:3001/pokemons/?name=${name}`)
-        .then(response => response.json())
-        .then(pokemonName => {
-            dispatch({
+    return async (dispatch) => {
+        try {
+            const pokemonName = await axios.get(`/pokemons/?name=${name}`)
+            return dispatch({
                 type: GET_POKEMONS_NAME,
-                payload: pokemonName
-            })
-        })
-        .catch(error => console.log(error))
+                payload: pokemonName.data
+        })}
+        catch(error) {
+            console.log(error)
+        }
     }
 }
 
+// export function getPokemonsName (name) {
+//     return (dispatch) => {
+//         return fetch (`http://localhost:3001/pokemons/?name=${name}`)
+//         .then(response => response.json())
+//         .then(pokemonName => {
+//             dispatch({
+//                 type: GET_POKEMONS_NAME,
+//                 payload: pokemonName
+//             })
+//         })
+//         .catch(error => console.log(error))
+//     }
+// }
+
 export function getPokemonsId (id) {
-    return (dispatch) => {
-        return fetch (`http://localhost:3001/pokemons/${id}`)
-        .then(response => response.json())
-        .then(detail => {
-            dispatch({
+    return async (dispatch) => {
+        try {
+            const detail = await axios.get(`/pokemons/${id}`)
+            return dispatch({
                 type: GET_POKEMONS_ID,
-                payload: detail
-            })
-        })
-        .catch(error => console.log(error))
+                payload: detail.data
+        })}
+        catch(error) {
+            console.log(error)
+        }
     }
 }
+
+// export function getPokemonsId (id) {
+//     return (dispatch) => {
+//         return fetch (`http://localhost:3001/pokemons/${id}`)
+//         .then(response => response.json())
+//         .then(detail => {
+//             dispatch({
+//                 type: GET_POKEMONS_ID,
+//                 payload: detail
+//             })
+//         })
+//         .catch(error => console.log(error))
+//     }
+// }
 
 export function getTypes () {
     return async (dispatch) => {
         try {
-            const info = await axios.get('http://localhost:3001/types/')
+            const types = await axios.get('/types/')
             return dispatch({
                 type: GET_TYPES,
-                payload: info.data
+                payload: types.data
         })}
         catch(error) {
             console.log(error)
@@ -61,7 +103,7 @@ export function getTypes () {
 export function createdPokemon (payload) {
     return async () => {
         try {
-            const info = await axios.post('http://localhost:3001/pokemons/', payload)
+            const info = await axios.post('/pokemons/', payload)
             return ({
                 type: CREATED_POKEMON,
                 payload: info.data
