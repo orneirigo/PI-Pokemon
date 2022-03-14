@@ -1,9 +1,10 @@
 import React from "react";
 import CardPokemon from "../CardPokemon/CardPokemon";
+import styles from './CardsPokemon.module.css';
 
 function CardsPokemon ({allPokemons}) {
     return (
-        <div>
+        <div className={styles.grid}>
             {allPokemons.map(pokemon => (
                 <CardPokemon
                 id={pokemon.id}
@@ -11,7 +12,6 @@ function CardsPokemon ({allPokemons}) {
                 name={pokemon.name}
                 image={pokemon.image}
                 types={pokemon.types}
-                attack={pokemon.attack}
                 />
             ))}
         </div>

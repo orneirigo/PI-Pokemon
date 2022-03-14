@@ -1,0 +1,94 @@
+.backgroundForm {
+        background: url('../../images/FondoForm.jpg');
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 100vh;
+}
+
+.form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 550px;
+        height: 500px;
+        background-color: rgba(255, 248, 220, 0.699);
+        box-sizing: border-box;
+        margin-right: -650px;
+        margin-top: 150px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.58);
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+.title {
+        justify-content: center;
+        text-transform: capitalize;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-shadow:  0 0 20px rgb(255, 255, 255), 0 0 40px rgb(255, 255, 255), 0 0 50px rgb(255, 255, 255);
+}
+
+.group {
+        align-items: center;
+        margin: 10px;
+        display: block;
+}
+
+.inputDetail {
+        justify-content: center;
+        background: none;
+        font-size: 15px;
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.671);
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-style: oblique;
+}
+
+.inputDetail:focus {
+        outline: none;
+        color:rgba(0, 0, 0, 0.671)
+}
+
+.inputType {
+        text-align: center;
+        justify-content: center;
+        text-transform: capitalize;
+        color: rgb(43, 20, 65);
+        border-radius: 20px;
+        font-size: 15px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.button {
+        border-radius: 10px;
+        border: 1px solid rgb(100, 99, 99);
+        width: 130px;
+        height: 30px;
+        position: relative;
+        font-size: 1rem;
+        background-color: rgba(151, 150, 78, 0.61);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: rgb(19, 19, 19);
+        cursor: pointer;
+    }
+
+.logo {
+        margin-right: -550px;
+}
+
+.select {
+        background-color: antiquewhite;
+        width: 20px;
+        color: black;
+        text-align: center;
+}
+
+.errors {
+        font-size: 15px;
+        color: red;
+}

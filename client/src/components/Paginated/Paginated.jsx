@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Paginated.module.css';
 
 function Paginated ({allPokemons, pokemonsPerPage, handlePagination}) {
     const numberPages = []
@@ -10,7 +11,7 @@ function Paginated ({allPokemons, pokemonsPerPage, handlePagination}) {
             <ul>
                 {numberPages?.map(num => {
                     return (
-                        <button onClick={() => handlePagination(num)} key={num}>{num}</button>
+                        <button className={styles.page} onClick={() => handlePagination(num)} key={num}>{num}</button>
                 )})
                 }
             </ul>

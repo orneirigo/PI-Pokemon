@@ -1,0 +1,11 @@
+.grid {   
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 160px;
+        margin-right: 160px;
+        margin-top: 50px;
+        background-size: cover;
+}
+

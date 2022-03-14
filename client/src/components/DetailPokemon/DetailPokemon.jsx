@@ -2,10 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link , useParams } from "react-router-dom";
-import styles from './DetailPokemon.module.css';
-
-
 import { getPokemonsId } from '../../actions';
+import styles from './DetailPokemon.module.css';
 
 function DetailPokemon () {
     const dispatch = useDispatch()
