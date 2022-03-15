@@ -2,12 +2,9 @@ import axios from 'axios';
 import { GET_POKEMONS, GET_POKEMONS_NAME, GET_POKEMONS_ID, GET_TYPES, CREATED_POKEMON, 
         FILTER_BY_TYPES, FILTER_BY_ORIGIN, ORDER_BY_NAME, ORDER_BY_STRENGTH,} from './constans';
 
-// const URLBack = "https://orne-pokemon.herokuapp.com"
-
 export function getPokemons () {
     return async (dispatch) => {
         try {
-            // const allPokemons = await axios.get(`${URLBack}/pokemons`)
             const allPokemons = await axios.get('/pokemons')
             return dispatch({
                 type: GET_POKEMONS,
@@ -36,7 +33,6 @@ export function getPokemons () {
 export function getPokemonsName (name) {
     return async (dispatch) => {
         try {
-            // const pokemonName = await axios.get(`${URLBack}/pokemons/?name=${name}`)
             const pokemonName = await axios.get(`/pokemons/?name=${name}`)
             return dispatch({
                 type: GET_POKEMONS_NAME,
@@ -65,7 +61,6 @@ export function getPokemonsName (name) {
 export function getPokemonsId (id) {
     return async (dispatch) => {
         try {
-            // const detail = await axios.get(`${URLBack}/pokemons/${id}`)
             const detail = await axios.get(`/pokemons/${id}`)
             return dispatch({
                 type: GET_POKEMONS_ID,
@@ -94,7 +89,6 @@ export function getPokemonsId (id) {
 export function getTypes () {
     return async (dispatch) => {
         try {
-            // const types = await axios.get(`${URLBack}/types/`)
             const types = await axios.get('/types/')
             return dispatch({
                 type: GET_TYPES,
@@ -109,7 +103,6 @@ export function getTypes () {
 export function createdPokemon (payload) {
     return async () => {
         try {
-            // const info = await axios.post(`${URLBack}/pokemons`, payload)
             const info = await axios.post('/pokemons', payload)
             return ({
                 type: CREATED_POKEMON,
@@ -148,6 +141,14 @@ export function orderByStrength (payload) {
         payload
     }
 }
+
+// Para el Deploy
+// const URLBack = "https://orne-pokemon.herokuapp.com"
+// const allPokemons = await axios.get(`${URLBack}/pokemons`)
+// const pokemonName = await axios.get(`${URLBack}/pokemons/?name=${name}`)
+// const detail = await axios.get(`${URLBack}/pokemons/${id}`)
+// const types = await axios.get(`${URLBack}/types/`)
+// const info = await axios.post(`${URLBack}/pokemons`, payload)
 
 
 
