@@ -51,8 +51,8 @@ function validation (input) {
     }
     else if (!input.image === '') {
         msgError.image = 'Image is required'
-    } else if (!expUrlImage.test(input.image)) {
-        msgError.image = 'Image must have a valid URL'
+    } else if (!expUrlImage.test(input.image) && input.image) {
+        msgError.image = 'Image can be empty or have a valid URL'
     }
     else if (input.types.length === 0) {
         msgError.types = 'Types are required'
@@ -124,11 +124,12 @@ function CreatedPokemon () {
     const handleDelete = (type) => {
         setInput({
             ...input,
-            types: input.types.filter(f => f !== type)
+            types: input.types.filter(f => f !==type)
         })
-        setErrors({
-            types: input.types.filter(f => f !== type)
-        })
+        setErrors(validation({
+            ...input,
+            types: input.types.filter(f => f !==type)
+        }))
     }
 
     return (
@@ -219,6 +220,7 @@ function CreatedPokemon () {
                         value={input.image} 
                         name='image' 
                         placeholder='URL Image' 
+                        width='150px'
                         onChange={handleChangeInput}/>
                         {errors.image && (<p className={styles.errors}>{errors.image}</p>)}
                     </div>

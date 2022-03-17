@@ -19,6 +19,7 @@ function Home () {
     const [currentPage, setCurrentPage] = useState(1)
     
     const dispatch = useDispatch()
+    
     useEffect(() => {
         dispatch(getPokemons())
         dispatch(getTypes())
@@ -66,7 +67,9 @@ function Home () {
         <div className={styles.backgroundHome}>
              <div className={styles.nav}>
                  <div className={styles.logo}>
-                    <img onClick={handleReload} src={Logo} alt='Logo not found' width='300px'/>
+                    <Link to ='/home'>
+                        <img onClick={handleReload} src={Logo} alt='Logo not found' width='300px'/>
+                    </Link>
                 </div>
                 <div>
                     <Link to='/createdPokemon'>
