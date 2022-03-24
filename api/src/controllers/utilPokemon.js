@@ -24,11 +24,10 @@ const getPokemonDB = async () => {
 
 const getPokemonAPI = async() => {
     try {
-       const pokemonsURL = (id) => (`https://pokeapi.co/api/v2/pokemon/${id}`)
        const pokeArray = []
        const numPokemon = 40
        for (let i = 1; i <= numPokemon; i++) {
-          pokeArray.push(await axios.get(pokemonsURL(i)))
+          pokeArray.push(await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
        }
        const pokemonsData = await Promise.all(pokeArray)
            const pokemon = pokemonsData.map(p => {
@@ -158,6 +157,20 @@ const getIdFromAPI = async (id) => {
         console.log(`Pokemon not found from API by Id: ${error}`)
     }
 }
+
+// const deletePokemon = async (id) => {
+//     try {
+//         const deletePokemon = await Pokemon.destroy({
+//             where: {
+//                 id: id
+//             }
+//         })
+//         return deletePokemon
+
+//     } catch (error) {
+//         console.log(`Pokemon not deleted: ${error}`)
+//     }
+// }
 
 module.exports = {
     getPokemonAPI,
