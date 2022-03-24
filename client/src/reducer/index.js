@@ -1,11 +1,11 @@
-import { GET_POKEMONS, GET_POKEMONS_NAME, GET_POKEMONS_ID, GET_TYPES, CREATED_POKEMON, 
-        FILTER_BY_TYPES, FILTER_BY_ORIGIN, ORDER_BY_NAME, ORDER_BY_STRENGTH } from "../actions/constans";
+import { GET_POKEMONS, GET_POKEMONS_NAME, GET_POKEMONS_ID, GET_TYPES, CREATED_POKEMON, FILTER_BY_TYPES,
+         FILTER_BY_ORIGIN, ORDER_BY_NAME, ORDER_BY_STRENGTH, CLEAR_STATE} from "../actions/constans";
 
 const initialState = {
     pokemons: [],
     pokemonsBackUp: [],
     pokemonTypes: [],
-    pokemonDetail: {},
+    pokemonDetail: {}
 }
 
 function rootReducer (state = initialState, action) {
@@ -14,7 +14,13 @@ function rootReducer (state = initialState, action) {
             return {
                 ...state,
                 pokemons: action.payload,
-                pokemonsBackUp: action.payload
+                pokemonsBackUp: action.payload,
+            }
+        }
+        case GET_TYPES: {
+            return {
+                ...state,
+                pokemonTypes: action.payload,
             }
         }
         case GET_POKEMONS_NAME: {
@@ -27,12 +33,6 @@ function rootReducer (state = initialState, action) {
             return {
                 ...state, 
                 pokemonDetail: action.payload
-            }
-        }
-        case GET_TYPES: {
-            return {
-                ...state,
-                pokemonTypes: action.payload
             }
         }
         case CREATED_POKEMON: {
@@ -92,9 +92,24 @@ function rootReducer (state = initialState, action) {
                 pokemons: orderByStr
             }
         }
+        case CLEAR_STATE: {
+            return {
+                ...state,
+                pokemonDetail: {}
+            }
+        }
         default:
             return state
     }
 }
 
 export default rootReducer
+
+// case 'SEARCH_TYPES': {
+//     const types = state.pokemonsBackUp.filter(f => f.types?.includes(action.payload))
+//     console.log(tipos)
+//     return {
+//         ...state,
+//         pokemons: types
+//     }
+// }

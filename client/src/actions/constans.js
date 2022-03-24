@@ -7,3 +7,4 @@ export const FILTER_BY_TYPES = 'FILTER_BY_TYPES';
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_STRENGTH = 'ORDER_BY_STRENGTH';
+export const CLEAR_STATE = 'CLEAR_STATE';

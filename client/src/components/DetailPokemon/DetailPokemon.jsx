@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link , useParams } from "react-router-dom";
-import { getPokemonsId } from '../../actions';
+import { getPokemonsId, clearState } from '../../actions';
 import styles from './DetailPokemon.module.css';
 
 function DetailPokemon () {
@@ -11,6 +11,7 @@ function DetailPokemon () {
 
     useEffect(() => {
         dispatch(getPokemonsId(params.id))
+        dispatch(clearState())
     }, [dispatch, params.id])
 
     const pokeDetail = useSelector(state => state.pokemonDetail)

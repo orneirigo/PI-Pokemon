@@ -1,10 +1,15 @@
 .landingPage {
         text-align: center;
-        background-image: url('../../images/WallPaper.png');
+        background-image: url('../../images/Landing.png');
         background-size: cover;
-        min-height: 100vh;
-        width: 1535px;
-        background-repeat: repeat-x;
+        height: 100vh;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        position: relative;
+
   }
 
   .imgLogo {

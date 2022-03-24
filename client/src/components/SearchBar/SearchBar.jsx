@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemonsName } from '../../actions';
+// import { searchTypes } from '../../actions';
 import styles from './SearchBar.module.css';
 
 function SearchBar () {
@@ -18,6 +19,20 @@ function SearchBar () {
         dispatch(getPokemonsName(pokemonName)) 
         setPokemonName('')
     }
+
+    // Para buscar en la search bar por tipos de pokemon
+    // const [type, setType] = useState('')
+
+    // const handleInput = (e) => {
+    //     e.preventDefault()
+    //     setType(e.target.value)
+    // }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     dispatch(getPokemonsName(type)) 
+    //     setType('')
+    // }
 
     return (
         <form onSubmit={handleSubmit}>

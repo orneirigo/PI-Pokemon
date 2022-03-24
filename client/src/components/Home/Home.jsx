@@ -18,12 +18,13 @@ function Home () {
    
     const [currentPage, setCurrentPage] = useState(1)
     
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() 
     
     useEffect(() => {
         dispatch(getPokemons())
         dispatch(getTypes())
     }, [dispatch])
+
 
     const handleReload = (e) => {
         e.preventDefault()
@@ -62,63 +63,64 @@ function Home () {
     const handlePagination = (num) => {
         setCurrentPage(num)
     }
-
+    
     return (
-        <div className={styles.backgroundHome}>
-             <div className={styles.nav}>
-                 <div className={styles.logo}>
-                    <Link to ='/home'>
-                        <img onClick={handleReload} src={Logo} alt='Logo not found' width='300px'/>
-                    </Link>
+            <div className={styles.backgroundHome}>
+                <div className={styles.nav}>
+                    <div className={styles.logo}>
+                        <Link to ='/home'>
+                            <img onClick={handleReload} src={Logo} alt='Logo not found' width='300px'/>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to='/createdPokemon'>
+                            <button className={styles.create}>Go to create your own Pokemon!</button>
+                        </Link>
+                    </div>
+                    <div className={styles.search}>
+                        <SearchBar/>
+                    </div>
                 </div>
                 <div>
-                    <Link to='/createdPokemon'>
-                        <button className={styles.create}>Go to create your own Pokemon!</button>
-                    </Link>
+                    <select onChange={handleFilterByOrigin} className={styles.select}>
+                        <option value='allPokes'>Filter by Origin</option>
+                        <option value='API'>Original Pokemons</option>
+                        <option value='DB'>Created Pokemons</option>
+                    </select>
+                    <select onChange={handleFilterByTypes} className={styles.select}>
+                        <option value='allTypes'>Select Type</option>
+                        {allTypes?.map(t => 
+                        (<option value={t.name} key={t.id}>{t.name.charAt(0).toUpperCase() + t.name.slice(1)}</option>))
+                        }
+                    </select>
+                    <select onChange={handleOrderByName} className={styles.select}>
+                        <option value= 'allNames'>Order by Name</option>
+                        <option value= 'nameA-Z'>Ascendent A-Z</option>
+                        <option value= 'nameZ-A'>Descendent Z-A</option>
+                    </select>
+                    <select onChange={handleOrderByStrength} className={styles.select}>
+                        <option value= 'allAttacks'>Order by Attack</option>
+                        <option value= 'attackAsc'>Less to more attack</option>
+                        <option value= 'attackDes'>More to less attack</option>
+                    </select>    
                 </div>
-                <div className={styles.search}>
-                    <SearchBar/>
-                </div>
+                        <div>
+                            <Paginated 
+                            pokemonsPerPage={pokemonsPerPage} 
+                            allPokemons={allPokemons.length} 
+                            handlePagination={handlePagination}/>
+                            
+                        {!currentPokemons.length ? 
+                            <div className={styles.waiting}>
+                                <p className={styles.waitingLetter}>Loading... maybe the pokemon was not found!</p>
+                                <img src={PikachuSleep} alt='Pikachu lost' width='550px'/>
+                            </div>
+                                : <CardsPokemon 
+                                allPokemons={currentPokemons}/>}
+                        </div>
             </div>
-            <div>
-                <select onChange={handleFilterByOrigin} className={styles.select}>
-                    <option value='allPokes'>Filter by Origin</option>
-                    <option value='API'>Original Pokemons</option>
-                    <option value='DB'>Created Pokemons</option>
-                </select>
-                <select onChange={handleFilterByTypes} className={styles.select}>
-                    <option value='allTypes'>Select Type</option>
-                    {allTypes?.map(t => 
-                    (<option value={t.name} key={t.id}>{t.name.charAt(0).toUpperCase() + t.name.slice(1)}</option>))
-                    }
-                </select>
-                <select onChange={handleOrderByName} className={styles.select}>
-                    <option value= 'allNames'>Order by Name</option>
-                    <option value= 'nameA-Z'>Ascendent A-Z</option>
-                    <option value= 'nameZ-A'>Descendent Z-A</option>
-                </select>
-                <select onChange={handleOrderByStrength} className={styles.select}>
-                    <option value= 'allAttacks'>Order by Attack</option>
-                    <option value= 'attackAsc'>Less to more attack</option>
-                    <option value= 'attackDes'>More to less attack</option>
-                </select>    
-            </div>
-                 <div>
-                     <Paginated 
-                     pokemonsPerPage={pokemonsPerPage} 
-                     allPokemons={allPokemons.length} 
-                     handlePagination={handlePagination}/>
-                     
-                   {!currentPokemons.length ? 
-                   <div className={styles.waiting}>
-                       <p className={styles.waitingLetter}>Pokemon not found... Try again!</p>
-                       <img src={PikachuSleep} alt='Pikachu lost' width='550px'/>
-                   </div>
-                    : <CardsPokemon 
-                     allPokemons={currentPokemons}/>}
-                 </div>
-        </div>
-    )
+        )
 }
+
 
 export default Home;
