@@ -21,7 +21,7 @@ export function getPokemons () {
 export function getTypes () {
     return async (dispatch) => {
         try {
-            const types = await axios.get('/types/')
+            const types = await axios.get('/types')
             return dispatch({
                 type: GET_TYPES,
                 payload: types.data
