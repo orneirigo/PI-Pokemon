@@ -131,13 +131,4 @@ export function clearState () {
 //     }
 // }
 
-// Para el Deploy
-// const URLBack = "https://orne-pokemon.herokuapp.com"
-// const allPokemons = await axios.get(`${URLBack}/pokemons`)
-// const pokemonName = await axios.get(`${URLBack}/pokemons/?name=${name}`)
-// const detail = await axios.get(`${URLBack}/pokemons/${id}`)
-// const types = await axios.get(`${URLBack}/types/`)
-// const info = await axios.post(`${URLBack}/pokemons`, payload)
-
-
 
