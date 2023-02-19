@@ -1,0 +1,135 @@
+.containerNavBar {
+    background-color: var(--color-15);
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 0 10px var(--color-01);
+}
+
+.logo {
+    width: 270px;
+    padding-left: 15px;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+    filter: drop-shadow(7px 8px 5px var(--color-09));
+}
+
+.items {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding-right: 20px;
+}
+
+.selectOrigin,
+.selectTypes,
+.selectOrder,
+.link {
+    background-color: var(--color-15);
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    color: var(--color-20);
+}
+
+.link {
+    padding: 0px 10px 0px 10px;
+}
+
+.selectTypes {
+    width: 145px;
+}
+
+.selectOrigin:hover,
+.selectTypes:hover,
+.selectOrder:hover,
+.link:hover {
+    background-color: var(--color-16);
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.option {
+    background-color: var(--color-15);
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    color: var(--color-20);
+}
+
+.responsive {
+    display: none;
+}
+
+.responsive:hover {
+    cursor: pointer;
+}
+
+/* --------------- RESPONSIVE ---------------- */
+/* --------------- Phones --------------- */
+@media screen and (max-width: 1024px) {
+    .items {
+        background-color: var(--color-15);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: fixed;
+        top: 118px;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        padding: 20px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .items.isResponsive {
+        right: 0%;
+    }
+
+    .selectTypes {
+        width: 150px;
+    }
+
+    .option {
+        font-size: 12px;
+    }
+
+    .responsive {
+        display: block;
+        padding-right: 24px;
+    }
+}
+
+/* --------------- Tablets --------------- */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+    .items {
+        gap: 60px;
+    }
+
+    .selectOrigin,
+    .selectTypes,
+    .selectOrder,
+    .link {
+        font-size: 28px;
+    }
+
+    .selectTypes {
+        width: 200px;
+    }
+
+    .option {
+        font-size: 14px;
+    }
+}

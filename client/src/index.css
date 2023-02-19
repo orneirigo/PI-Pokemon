@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* --------------- GOOGLE FONTS --------------- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+
+/* --------------- COLORS VARIABLES --------------- */
+:root {
+  --color-00: #21212a;
+  --color-01: #000000b3;
+  --color-02: #131313;
+  --color-03: #2b1441;
+  --color-04: #363645;
+  --color-05: #646363;
+  --color-06: #ffffff6b;
+  --color-07: #ffffff80;
+  --color-08: #ffffff94;
+  --color-09: #ffffffb3;
+  --color-10: #fff8dcb2;
+  --color-11: #e6ca9f;
+  --color-12: #faebd7;
+  --color-13: #97964e9c;
+  --color-14: #521284;
+  --color-15: #8449b5;
+  --color-16: #a57ec4a9;
+  --color-17: #9898ae;
+  --color-18: #d6d6d6;
+  --color-19: #f2f2f2;
+  --color-20: #ffffff;
+  --color-21: #d22121;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* --------------- GENERALS --------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  color: var(--color-00);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: url("./images/Wallpaper.jpg");
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }

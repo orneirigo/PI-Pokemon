@@ -52,16 +52,4 @@ router.get('/:idPokemon', async (req, res) => {
     }
 })
 
-// router.delete('/:idPoke', async (req, res) => {
-//     const { idPoke } = req.params
-//     try {
-//         const deletePoke = deletePokemon(idPoke) 
-//         res.status(200).json(deletePoke)
-       
-//     } catch (error) {
-//         res.status(404).send(`Pokemon not deleted: ${error}`)
-//     }
-// })
-
-
 module.exports = router;

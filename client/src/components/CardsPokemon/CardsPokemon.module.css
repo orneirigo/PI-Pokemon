@@ -1,7 +1,7 @@
-.grid {   
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 50px 150px;
-        margin-top: 50px;
+.gridCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 70px 120px;
+    margin-top: 50px;
 }

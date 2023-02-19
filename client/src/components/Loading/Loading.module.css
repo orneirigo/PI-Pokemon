@@ -1,0 +1,43 @@
+.containerIsLoading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.containerIsLoading strong {
+    font-size: 32px;
+}
+
+.containerIsLoading p {
+    font-size: 28px;
+}
+
+.containerIsLoading img {
+    width: 550px;
+}
+
+/* --------------- RESPONSIVE ---------------- */
+/* --------------- Phones --------------- */
+@media screen and (max-width: 767px) {
+    .containerIsLoading strong {
+        font-size: 26px;
+    }
+
+    .containerIsLoading p {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .containerIsLoading img {
+        width: 350px;
+    }
+}
+
+/* --------------- Tablets --------------- */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .containerIsLoading {
+        padding-top: 100px;
+    }
+}

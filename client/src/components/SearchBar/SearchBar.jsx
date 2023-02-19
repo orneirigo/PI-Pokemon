@@ -5,18 +5,17 @@ import { getPokemonsName } from '../../actions';
 // import { searchTypes } from '../../actions';
 import styles from './SearchBar.module.css';
 
-function SearchBar () {
+function SearchBar() {
     const dispatch = useDispatch()
     const [pokemonName, setPokemonName] = useState('')
 
     const handleInput = (e) => {
-        e.preventDefault()
         setPokemonName(e.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(getPokemonsName(pokemonName)) 
+        dispatch(getPokemonsName(pokemonName))
         setPokemonName('')
     }
 
@@ -24,20 +23,21 @@ function SearchBar () {
     // const [type, setType] = useState('')
 
     // const handleInput = (e) => {
-    //     e.preventDefault()
     //     setType(e.target.value)
     // }
 
     // const handleSubmit = (e) => {
     //     e.preventDefault()
-    //     dispatch(getPokemonsName(type)) 
+    //     dispatch(searchTypes(type)) 
     //     setType('')
     // }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input className={styles.lookFor} type='text' placeholder='Look for a pokemon!' value={pokemonName} onChange={handleInput}/>
-            <input className={styles.go} type='submit' value='Lets go!'/>
+        <form onSubmit={handleSubmit} className={styles.containerSearchBar}>
+            <input type='text' placeholder='Search...' value={pokemonName} onChange={handleInput} />
+            <i>
+                <box-icon name='search-alt-2' color="grey" className={styles.icon}></box-icon>
+            </i>
         </form>
     )
 }

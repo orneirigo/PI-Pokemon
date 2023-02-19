@@ -5,7 +5,6 @@ async function getPekemonTypes () {
     try {
         const pokeTypesAPI = await axios.get('https://pokeapi.co/api/v2/type')
         const infoAPI = [...pokeTypesAPI.data.results]
-        // console.log(infoAPI)
         infoAPI.forEach(t => {
             Type.findOrCreate({
                 where: {

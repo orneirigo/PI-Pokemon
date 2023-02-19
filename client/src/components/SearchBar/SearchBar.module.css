@@ -1,32 +1,59 @@
-.lookFor {
-        border-radius: 10px;
+.containerSearchBar,
+.containerSearchBar i {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerSearchBar {
+    position: relative;
+    width: 200px;
+    height: 30px;
+}
+
+.containerSearchBar i {
+    right: 10px;
+    position: absolute;
+}
+
+.containerSearchBar i:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.containerSearchBar input {
+    background-color: var(--color-20);
+    color: var(--color-00);
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    border: 2px solid var(--color-17);
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+}
+
+.containerSearchBar input:focus {
+    outline: 2px solid var(--color-17);
+    border: none;
+}
+
+/* --------------- RESPONSIVE ---------------- */
+/* --------------- Phones --------------- */
+@media screen and (max-width: 1024px) {
+    .containerSearchBar {
+        width: 180px;
+    }
+}
+
+/* --------------- Tablets --------------- */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+    .containerSearchBar {
         width: 280px;
-        height: 30px;
-        position: relative;
-        font-size: 1rem;
-        background-color: #f5f0dbe0;
-        border-radius: 10px;
-        border: 1px solid rgb(2, 8, 27);
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        color: rgb(19, 19, 19);
-}
+    }
 
-.go {
-        border-radius: 10px;
-        border: 1px solid rgb(100, 99, 99);
-        width: 80px;
-        height: 35px;
-        position: relative;
-        font-size: 1rem;
-        background-color: #fcf1c6d5;
-        border-radius: 10px;
-        border: 1px solid rgb(2, 8, 27);
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        color: rgb(19, 19, 19);
-        cursor: pointer;
-}
-
-.go:hover {
-        transform: scale(1.05);
-        background-color: rgb(231, 240, 241);
+    .containerSearchBar input {
+        font-size: 24px;
+        border-radius: 40px;
+    }
 }

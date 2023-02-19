@@ -1,75 +1,122 @@
-.detailBackground {
-        background: url('../../images/FondoDetail.jpg');
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        background-repeat: no-repeat;
-        background-position: center;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        margin: 0%;
+.containerDetail {
+    background: url('../../images/BackgroundDetail.jpg');
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
 }
 
-.detailPokemon {
-        background-color: rgba(255, 255, 255, 0.418);
-        float: right;
-        width: 550px;
-        height: 650px;
-        margin-right: -700px;
-        margin-top: 35px;
-        border-radius: 30px;
+.infoDetail {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.namePokemon {
-        display: flex;
-        justify-content: center;
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 30px;
-        text-transform: capitalize;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        text-shadow:  0 0 20px rgb(255, 255, 255), 0 0 40px rgb(255, 255, 255), 0 0 50px rgb(255, 255, 255);
+.cardPokemon {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-06);
+    width: 550px;
+    height: 640px;
+    gap: 25px;
+    border-radius: 30px;
 }
 
-.idPokemon {
-        display: flex;
-        justify-content: center;
-        font-size: 20px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        text-shadow:  0 0 10px rgb(255, 255, 255), 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255);
+.idNamePokemon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-07);
+    padding: 10px 10px 10px 15px;
+    border-radius: 30px;
+}
+
+.iconBack {
+    display: flex;
+    align-items: center;
+    transform: scale(1.2);
+}
+
+.iconBack:hover {
+    transform: scale(1.5);
+    transition: 0.3s ease-in-out;
+    background-color: var(--color-11);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.idNamePokemon h1 {
+    text-transform: capitalize;
 }
 
 .imagePokemon {
-        filter: drop-shadow(7px 8px 5px rgba(12, 4, 4, 0.7));
-        margin-top: -50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.detailStats {
-        display: flex;
-        height: 50px;
-        justify-content: space-evenly; 
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        
+.imagePokemon img {
+    margin-top: -30px;
+    filter: drop-shadow(7px 8px 5px var(--color-09));
+    width: 270px;
 }
 
-.button {
-        border-radius: 10px;
-        border: 1px solid rgb(100, 99, 99);
-        width: 130px;
-        height: 30px;
-        position: relative;
-        font-size: 1rem;
-        background-color: rgba(255, 255, 255, 0.61);
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        color: rgb(19, 19, 19);
-        margin-right: -850px;
-        margin-top: 2px;
-        cursor: pointer;
+.typesPokemon {
+    display: flex;
+    justify-content: center;
+    text-transform: capitalize;
 }
 
-.button:hover {
-        transform: scale(1.05);
-        background-color: blanchedalmond;
+.statsPokemon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.statsPokemon p {
+    font-size: 18px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+
+/* --------------- RESPONSIVE ---------------- */
+/* --------------- Phones --------------- */
+@media screen and (max-width: 767px) {
+    .infoDetail {
+        justify-content: center;
+    }
+
+    .cardPokemon {
+        height: 600px;
+        gap: 20px;
+    }
+}
+
+/* --------------- Tablets --------------- */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .infoDetail {
+        justify-content: center;
+        padding-top: 100px;
+    }
+
+    .cardPokemon {
+        width: 600px;
+        height: 700px;
+        gap: 30px;
+    }
+
+    .statsPokemon p {
+        font-size: 20px;
+    }
 }

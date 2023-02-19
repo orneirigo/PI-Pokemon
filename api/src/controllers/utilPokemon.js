@@ -5,9 +5,10 @@ const getPokemonDB = async () => {
     try {
         const pokes = await Pokemon.findAll({
             include: {
-                model: Type, 
-                through:{attributes: []}
-        }})
+                model: Type,
+                through: { attributes: [] }
+            }
+        })
         return pokes.map(p => ({
             id: p.id,
             name: p.name.toLowerCase(),
@@ -22,24 +23,27 @@ const getPokemonDB = async () => {
     }
 }
 
-const getPokemonAPI = async() => {
+const getPokemonAPI = async () => {
     try {
-       const pokeArray = []
-       const numPokemon = 40
-       for (let i = 1; i <= numPokemon; i++) {
-          pokeArray.push(await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
-       }
-       const pokemonsData = await Promise.all(pokeArray)
-           const pokemon = pokemonsData.map(p => {
-               return ({
-                   id: p.data.id,
-                   name: p.data.name.toLowerCase(),
-                   types: p.data.types.map(e => e.type.name),
-                   attack: p.data.stats[1].base_stat,
-                   image: p.data.sprites.other.home.front_default,
-               })
-           }) 
-           return pokemon
+        //    const pokeArray = []
+        //    const numPokemon = 50
+        //    for (let i = 1; i <= numPokemon; i++) {
+        //       pokeArray.push(await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
+        //    }
+
+        const totalPokemons = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=50");
+        const pokeArray = totalPokemons.data.results.map(obj => axios.get(obj.url));
+        const pokemonsData = await axios.all(pokeArray)
+        const pokemon = pokemonsData.map(p => {
+            return ({
+                id: p.data.id,
+                name: p.data.name.toLowerCase(),
+                types: p.data.types.map(e => e.type.name),
+                attack: p.data.stats[1].base_stat,
+                image: p.data.sprites.other.home.front_default,
+            })
+        })
+        return pokemon
 
     } catch (error) {
         console.log('Pokemon not found from pokeAPI: ' + error)
@@ -49,11 +53,12 @@ const getPokemonAPI = async() => {
 const getNameFromDB = async (name) => {
     try {
         const pokeNameDB = await Pokemon.findAll({
-            where: {name},
+            where: { name },
             include: {
-                model: Type, 
-                through:{attributes: []}
-        }})
+                model: Type,
+                through: { attributes: [] }
+            }
+        })
         return pokeNameDB.map(p => ({
             id: p.id,
             name: p.name.toLowerCase(),
@@ -62,7 +67,7 @@ const getNameFromDB = async (name) => {
             attack: p.attack,
             createdIdDB: p.createdIdDB
         }))
-        
+
     } catch (error) {
         console.log(`Pokemon not found from DataBase by Name: ${error}`)
     }
@@ -78,7 +83,6 @@ const getNameFromAPI = async (name) => {
             attack: pokeName.data.stats[1].base_stat,
             image: pokeName.data.sprites.other.home.front_default,
         }]
-        // console.log(pokeNameAPI)
         return pokeNameAPI
 
     } catch (error) {
@@ -99,7 +103,7 @@ const createPokemon = async (name, hp, attack, defense, speed, height, weight, i
             image: image
         })
         const typeDB = await Type.findAll({
-            where: {name: types}
+            where: { name: types }
         })
         pokeCreated.addType(typeDB)
         return pokeCreated
@@ -114,11 +118,12 @@ const getIdFromDB = async (id) => {
         const pokeId = await Pokemon.findByPk(id, {
             include: {
                 model: Type,
-                through: {attributes: []}
-            }})
+                through: { attributes: [] }
+            }
+        })
         const pokeFoundDB = {
             id: pokeId.id,
-            name: pokeId.name, 
+            name: pokeId.name,
             hp: pokeId.hp,
             attack: pokeId.attack,
             defense: pokeId.defense,
@@ -143,10 +148,10 @@ const getIdFromAPI = async (id) => {
             id: pokeId.data.id,
             name: pokeId.data.name,
             hp: pokeId.data.stats[0].base_stat,
-            attack: pokeId.data.stats[1].base_stat, 
-            defense: pokeId.data.stats[2].base_stat, 
-            speed: pokeId.data.stats[5].base_stat, 
-            height: pokeId.data.height, 
+            attack: pokeId.data.stats[1].base_stat,
+            defense: pokeId.data.stats[2].base_stat,
+            speed: pokeId.data.stats[5].base_stat,
+            height: pokeId.data.height,
             weight: pokeId.data.weight,
             image: pokeId.data.sprites.other.home.front_default,
             types: pokeId.data.types.map(t => t.type.name)
@@ -158,23 +163,9 @@ const getIdFromAPI = async (id) => {
     }
 }
 
-// const deletePokemon = async (id) => {
-//     try {
-//         const deletePokemon = await Pokemon.destroy({
-//             where: {
-//                 id: id
-//             }
-//         })
-//         return deletePokemon
-
-//     } catch (error) {
-//         console.log(`Pokemon not deleted: ${error}`)
-//     }
-// }
-
 module.exports = {
     getPokemonAPI,
-    getPokemonDB, 
+    getPokemonDB,
     getNameFromAPI,
     getNameFromDB,
     createPokemon,
