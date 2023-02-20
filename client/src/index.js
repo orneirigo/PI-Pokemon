@@ -11,7 +11,7 @@ import axios from 'axios';
 dotenv.config();
 
 // Deploy
-axios.defaults.baseURL = "http://localhost:3001" || process.env.REACT_APP_API
+axios.defaults.baseURL = "https://pokemon-app-production-f74d.up.railway.app" || "http://localhost:3001"
 
 ReactDOM.render(
     <Provider store={store}>
