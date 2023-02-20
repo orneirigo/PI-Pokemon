@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "mocha -w ./tests/**/*.spec.js"
   },
-  "author": "Henry",
+  "author": "Ornella",
   "license": "ISC",
   "engines": {
     "node": ">=12.18.3",
@@ -18,7 +18,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "ioredis": "^4.19.2",
     "jsonwebtoken": "^8.5.1",
