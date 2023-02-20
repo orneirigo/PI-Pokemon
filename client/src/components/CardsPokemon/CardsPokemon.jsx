@@ -5,7 +5,7 @@ import styles from "./CardsPokemon.module.css";
 function CardsPokemon({ currentPokemons }) {
     return (
         <div className={styles.gridCards}>
-            {currentPokemons.map((pokemon) => (
+            {currentPokemons?.map((pokemon) => (
                 <CardPokemon
                     id={pokemon.id}
                     key={pokemon.id}

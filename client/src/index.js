@@ -6,12 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store/index.js';
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import axios from 'axios';
-// dotenv.config();
+dotenv.config();
 
 // Deploy
-axios.defaults.baseURL = "http://localhost:3001" || "https://pokemon-app-production-f74d.up.railway.app"
+axios.defaults.baseURL = "http://localhost:3001" || process.env.REACT_APP_API
 
 ReactDOM.render(
     <Provider store={store}>

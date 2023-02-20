@@ -249,7 +249,7 @@ function CreatedPokemon() {
                                         disabled={input.types.length >= 2}
                                         onChange={handleOptionInput}
                                     >
-                                        {pokesTypes.map((t, i) => (
+                                        {pokesTypes?.map((t, i) => (
                                             <option value={t.name} key={i}>
                                                 {t.name[0].toUpperCase() + t.name.slice(1)}
                                             </option>
