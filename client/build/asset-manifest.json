@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.41b20508.chunk.css",
+    "main.js": "/static/js/main.bc79af09.chunk.js",
+    "main.js.map": "/static/js/main.bc79af09.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.823d0496.js",
+    "runtime-main.js.map": "/static/js/runtime-main.823d0496.js.map",
+    "static/js/2.b579ead9.chunk.js": "/static/js/2.b579ead9.chunk.js",
+    "static/js/2.b579ead9.chunk.js.map": "/static/js/2.b579ead9.chunk.js.map",
+    "static/js/3.793f29e3.chunk.js": "/static/js/3.793f29e3.chunk.js",
+    "static/js/3.793f29e3.chunk.js.map": "/static/js/3.793f29e3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.41b20508.chunk.css.map": "/static/css/main.41b20508.chunk.css.map",
+    "static/js/2.b579ead9.chunk.js.LICENSE.txt": "/static/js/2.b579ead9.chunk.js.LICENSE.txt",
+    "static/media/CreatedPokemon.module.css": "/static/media/BackgroundCreate.07f3e12b.jpg",
+    "static/media/DetailPokemon.module.css": "/static/media/BackgroundDetail.9b6313a5.jpg",
+    "static/media/Logo.16d0ce56.png": "/static/media/Logo.16d0ce56.png",
+    "static/media/Pikachu3D.34510fb0.png": "/static/media/Pikachu3D.34510fb0.png",
+    "static/media/PikachuSleep.d7db65ed.png": "/static/media/PikachuSleep.d7db65ed.png",
+    "static/media/Pokeball.c0dc7f8c.png": "/static/media/Pokeball.c0dc7f8c.png",
+    "static/media/index.css": "/static/media/Wallpaper.34dd7115.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.823d0496.js",
+    "static/js/2.b579ead9.chunk.js",
+    "static/css/main.41b20508.chunk.css",
+    "static/js/main.bc79af09.chunk.js"
+  ]
+}
