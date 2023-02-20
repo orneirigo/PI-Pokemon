@@ -43,9 +43,7 @@ function CardPokemon({ id, name, image, types }) {
         <Link to={`/home/${id}`}>
             <div className={styles.containerCard}>
                 <section className={styles.cardPokemon}>
-                    {
-                        image ? <img className={styles.cardImage} src={image} alt={`${pokeName}`} /> : <h1>LOADING... SPIN</h1>
-                    }
+                    <img className={styles.cardImage} src={image} alt={`${pokeName}`} />
                 </section>
                 <section className={styles.cardInfo}>
                     <h2>{pokeName}</h2>
